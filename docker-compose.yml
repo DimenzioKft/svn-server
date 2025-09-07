@@ -1,0 +1,19 @@
+services:
+  svn-server:
+    build: .
+    container_name: svn-server
+    restart: unless-stopped
+    volumes:
+      - ./svn-repos:/var/svn
+      - ./apache-config:/etc/apache2/sites-available
+      - ./logs:/var/log/apache2
+    environment:
+      - SVN_ADMIN_USER=${SVN_ADMIN_USER}
+      - SVN_ADMIN_PASSWORD=${SVN_ADMIN_PASSWORD}
+      - APACHE_SERVER_NAME=${APACHE_SERVER_NAME}
+    networks:
+      - npm-proxy
+
+networks:
+  npm-proxy:
+    external: true

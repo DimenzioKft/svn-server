@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y \
     subversion \
     libapache2-mod-svn \
     curl \
+    nano \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Enable Apache modules
